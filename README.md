@@ -1,6 +1,6 @@
-# TedeODS
+# TedeODS - PUC-SP
 
-### Identificação de Trabalhos Acadêmicos Relacionados aos ODS no Repositório da PUC-SP
+### Indicadores e rankings internacionais: mapeamento de práticas e reflexões sobre o papel da Universidade nos debates sobre sustentabilidade
 
 ## Sobre o Projeto
 
