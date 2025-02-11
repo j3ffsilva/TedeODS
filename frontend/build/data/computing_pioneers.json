@@ -1,0 +1,55 @@
+{
+    "pioneers": [
+      {
+        "nome": "Alan Turing",
+        "descricao": "Considerado o pai da ciência da computação e da inteligência artificial. Ele formalizou conceitos de algoritmo e computação com a máquina de Turing.",
+        "data": "23/06/1912 - 07/06/1954"
+      },
+      {
+        "nome": "Ada Lovelace",
+        "descricao": "Matemática e escritora inglesa, reconhecida como a primeira programadora de computadores.",
+        "data": "10/12/1815 - 27/11/1852"
+      },
+      {
+        "nome": "John von Neumann",
+        "descricao": "Matemático e cientista da computação. Criador da arquitetura de Von Neumann, a base da maioria dos computadores modernos.",
+        "data": "28/12/1903 - 08/02/1957"
+      },
+      {
+        "nome": "Grace Hopper",
+        "descricao": "Pioneira na programação e desenvolvimento do primeiro compilador para uma linguagem de programação.",
+        "data": "09/12/1906 - 01/01/1992"
+      },
+      {
+        "nome": "Charles Babbage",
+        "descricao": "Inventor da máquina analítica, um conceito considerado o precursor dos computadores.",
+        "data": "26/12/1791 - 18/10/1871"
+      },
+      {
+        "nome": "Tim Berners-Lee",
+        "descricao": "Cientista da computação britânico, inventor da World Wide Web.",
+        "data": "08/06/1955 - presente"
+      },
+      {
+        "nome": "Linus Torvalds",
+        "descricao": "Criador do kernel Linux, uma peça fundamental no desenvolvimento de sistemas operacionais modernos.",
+        "data": "28/12/1969 - presente"
+      },
+      {
+        "nome": "Vinton Cerf",
+        "descricao": "Um dos criadores do protocolo TCP/IP, base da comunicação na Internet.",
+        "data": "23/06/1943 - presente"
+      },
+      {
+        "nome": "Bill Gates",
+        "descricao": "Cofundador da Microsoft e uma das figuras mais influentes no desenvolvimento de software e PCs.",
+        "data": "28/10/1955 - presente"
+      },
+      {
+        "nome": "Steve Jobs",
+        "descricao": "Cofundador da Apple, revolucionou o design e o uso de dispositivos eletrônicos, como o iPhone e o Mac.",
+        "data": "24/02/1955 - 05/10/2011"
+      }
+    ]
+  }
+  
