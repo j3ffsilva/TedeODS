@@ -1,0 +1,82 @@
+import re
+
+def verifica_expressao(texto):
+    texto = texto.lower()  # Normaliza para letras minúsculas
+    
+    # Define os padrões de busca
+    padroes = [
+        r'inoc[êe]ncia presumida',
+        r'falsa confiss[ãa]o',
+        r'conflito[s]? armado[s]?',
+        r'conflito[s]? civil[íi]s?',
+        r'guerra.*(conflito|guerra|democracia|Conven[çc][ãa]o de Genebra|tratado|paz)',
+        r'manuten[çc][ãa]o da paz',
+        r'corrup[çc][ãa]o.*(institui[çc][ãa]o|funcion[áa]rio p[úu]blico|governo|suborno|conflito)',
+        r'crime[s]?',
+        r'crimin[óo]so',
+        r'd[éê]ficit democr[áa]tico',
+        r'democratiza[çc][ãa]o.*(institucional|conflito|tomada de decis[ãa]o|sociedade|pol[íi]tica|ajuda financeira)',
+        r'conflito[s]? [ée]tnico[s]?',
+        r'exonera[çc][ãa]o',
+        r'genoc[íi]dio[s]?',
+        r'homic[íi]dio[s]?',
+        r'assassinato[s]?',
+        r'tr[áa]fico humano',
+        r'sistema de justi[çc]a criminal',
+        r'sistema de justi[çc]a',
+        r'justi[çc]a arbitr[áa]ria',
+        r'refugiado[s]?',
+        r'terrorista[s]?',
+        r'viol[êe]ncia',
+        r'tortura',
+        r'estado de direito efetivo',
+        r'fluxo de armas',
+        r'institui[çc][ãa]o transparente[s]?',
+        r'boa governan[çc]a',
+        r'identidade legal para todos',
+        r'liberdade de informa[çc][ãa]o',
+        r'institui[çc][ãa]o de direitos humanos',
+        r'ativistas de direitos humanos',
+        r'liberdade[s]? fundamental[íi]s?',
+        r'conflito[s]? violentos?',
+        r'sociedade[s]? pac[íi]fica[s]?',
+        r'institui[çc][ãa]o[s]? efetiva[s]?',
+        r'institui[çc][ãa]o[s]? respons[áa]vel[eis]?',
+        r'institui[çc][ãa]o[s]? inclusiva[s]?',
+        r'abuso infantil',
+        r'deten[çc][ãa]o arbitr[áa]ria',
+        r'deten[çc][ãa]o sem senten[çc]a',
+        r'sistema judicial',
+        r'tribunal criminal',
+        r'sociedade[s]? inclusiva[s]?',
+        r'recurso[s]? legal[íi]s?',
+        r'independ[êe]ncia do judici[áa]rio',
+        r'judici[áa]rio independente',
+        r'separa[çc][ãa]o de poderes',
+        r'extremismo',
+        r'crime de guerra',
+        r'crime organizado',
+        r'transfer[êe]ncia il[íi]cita',
+        r'dinheiro il[íi]cito',
+        r'tr[áa]fico de armas',
+        r'cibercrime|crime[s]? cibern[ée]tico[s]?',
+        r'insurg[êe]ncia',
+        r'institui[çc][ãa]o democr[áa]tica',
+        r'instabilidade pol[íi]tica',
+        r'tomada de decis[ãa]o pol[íi]tica.*(responsivo|inclusivo|participativo|representativo)',
+        r'Conven[çc][ãa]o de Aarhus',
+        r'liberdade de imprensa',
+        r'liberdade de express[ãa]o'
+    ]
+    
+    # Exceções (não pode conter "doença" ou "genética")
+    if re.search(r'doen[çc]a|gen[ée]tica', texto):
+        return False, None
+    
+    # Verifica se algum dos padrões aparece no texto e retorna a correspondência
+    for p in padroes:
+        match = re.search(p, texto)
+        if match:
+            return True, match.group()
+    
+    return False, None

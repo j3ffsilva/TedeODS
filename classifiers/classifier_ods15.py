@@ -1,0 +1,78 @@
+import re
+
+def verifica_expressao(texto):
+    texto = texto.lower()  # Normaliza para letras minúsculas
+    
+    # Define os padrões de busca
+    padroes = [
+        r'terrestre',
+        r'terra',
+        r'[áa]gua doce',
+        r'biodivers\w*',
+        r'riqueza de esp[ée]cies',
+        r'bioeconomia\w*',
+        r'produ[çc][ãa]o biol[óo]gica',
+        r'desflorestamento\w*',
+        r'desertif\w*',
+        r'sistema terrestre',
+        r'resili[êe]ncia ecol[óo]gica',
+        r'ecossistema[s]?',
+        r'cascata tr[óo]fica',
+        r'n[íi]vel tr[óo]fico',
+        r'teia tr[óo]fica',
+        r'esp[ée]cie[s]? amea[çc]ada[s]?',
+        r'risco[s]? de extin[çc][ãa]o',
+        r'ca[çc]a furtiva|ca[çc]a ilegal\w*',
+        r'produto[s]? da vida selvagem',
+        r'tr[áa]fico de animais selvagens',
+        r'mercado[s]? de animais selvagens',
+        r'esp[ée]cie[s]? invasora[s]?',
+        r'esp[ée]cie[s]? ex[óo]tica[s]?',
+        r'uso[s]? da terra',
+        r'degrada[çc][ãa]o do solo|degrada[çc][ãa]o da terra',
+        r'LULUCF',
+        r'floresta\w*',
+        r'conserva[çc][ãa]o do solo',
+        r'zona[s]? [úu]mida[s]?',
+        r'montanha[s]?',
+        r'terra seca[s]?',
+        r'cobertura montanhosa',
+        r'[áa]rea[s]? protegida[s]?',
+        r'REDD',
+        r'manejo florestal',
+        r'silvicultura',
+        r'colheita de madeira',
+        r'extra[çc][ãa]o ilegal de madeira',
+        r'corte e queima',
+        r'cultivo de pousio',
+        r'cobertura de [áa]rvores',
+        r'restaurar[açc][ãa]o do solo|restaurar[açc][ãa]o da terra',
+        r'seca',
+        r'manejo sustent[áa]vel da terra',
+        r'vegeta[çc][ãa]o de montanha',
+        r'restaurar[açc][ãa]o de habitat',
+        r'esp[ée]cie[s]? da Lista Vermelha',
+        r'[íi]ndice da Lista Vermelha',
+        r'onda de extin[çc][ãa]o',
+        r'fragmenta[çc][ãa]o de habitat',
+        r'perda de habitat',
+        r'Protocolo de Nagoya sobre Acesso a Recursos Gen[ée]ticos',
+        r'recursos gen[ée]ticos',
+        r'invas[ãa]o biol[óo]gica',
+        r'biodiversidade inclusiva',
+        r'conselho de manejo florestal',
+        r'alian[çc]a para florestas tropicais',
+        r'certifica[çc][ãa]o florestal',
+        r'auditoria florestal',
+        r'ecoturismo',
+        r'conserva[çc][ãa]o baseada na comunidade',
+        r'conflito entre humanos e animais selvagens'
+    ]
+    
+    # Verifica se algum dos padrões aparece no texto e retorna a correspondência
+    for p in padroes:
+        match = re.search(p, texto)
+        if match:
+            return True, match.group()
+    
+    return False, None
