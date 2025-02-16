@@ -37,3 +37,7 @@ class ODS13Classifier(BaseODSClassifier):
             r'clima[s]? urbano[s]?',
             r'clima.*(gest[ãa]o adaptativa|conscientiza[çc][ãa]o|bioeconomia|carbono|tomada de decis[ãa]o|redu[çc][ãa]o do risco de desastres|educa[çc][ãa]o ambiental|educa[çc][ãa]o para o desenvolvimento sustent[áa]vel|conserva[çc][ãa]o de energia|emiss[õo]es?|extremo|cadeia alimentar|cadeias alimentares|estrutura|perigo[s]?|ilha[s]?|uso da terra|megacidade[s]?|consumo|produ[çc][ãa]o|pequenas ilhas em desenvolvimento|antropoceno|atmosfera[s]?|mecanismo de desenvolvimento limpo|recuo das geleiras|aquecimento|estufa|intera[çc][ãa]o gelo-oceano|intera[çc][õo]es gelo-oceano|ciclo do nitrog[êe]nio|ciclos do nitrog[êe]nio|acidifica[çc][ãa]o dos oceanos|for[çc]ante radiativa|gelo marinho|n[íi]vel do mar|n[íi]veis do mar|expans[ãa]o t[ée]rmica|unfccc|oz[ôo]nio)'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

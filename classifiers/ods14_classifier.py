@@ -46,3 +46,7 @@ class ODS14Classifier(BaseODSClassifier):
             r'economia marinha',
             r'pol[íi]tica marinha'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

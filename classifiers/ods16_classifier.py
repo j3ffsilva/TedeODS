@@ -69,3 +69,7 @@ class ODS16Classifier(BaseODSClassifier):
             r'liberdade de imprensa',
             r'liberdade de express[ãa]o'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

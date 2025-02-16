@@ -40,3 +40,7 @@ class ODS02Classifier(BaseODSClassifier):
             r'cadeia de valor alimentar',
             r'mercado de commodities alimentares'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

@@ -59,3 +59,7 @@ class ODS03Classifier(BaseODSClassifier):
             r'bem-estar psicol[óo]gico',
             r'sa[úu]de p[úu]blica'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

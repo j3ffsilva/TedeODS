@@ -47,3 +47,7 @@ class ODS09Classifier(BaseODSClassifier):
             r'inova[çc][ãa]o de produto',
             r'inova[çc][ãa]o inclusiva'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

@@ -3,7 +3,6 @@ import pandas as pd
 import importlib
 import json
 import os
-from utils.json_utils import salvar_json
 
 
 def get_classifier(ods_number):
@@ -39,16 +38,14 @@ def classify_text(texto):
     return resultados
 
 
-def process_text_input(texto, output_file):
+def process_text_input(texto):
     """Processa um texto passado diretamente na linha de comando."""
     resultado_json = classify_text(texto)
-
-    output_path = os.path.join("data", "processed", output_file)  # 🔹 Redireciona para data/processed/
-    salvar_json([resultado_json], output_path)
+    print(json.dumps(resultado_json, indent=2, ensure_ascii=False))  # Imprime JSON formatado
 
 
-def process_tsv_input(arquivo_tsv, coluna_texto, output_file):
-    """Processa um arquivo TSV, classifica os textos e salva o resultado em JSON."""
+def process_tsv_input(arquivo_tsv, coluna_texto):
+    """Processa um arquivo TSV, classifica os textos e imprime o resultado em JSON."""
     if not os.path.exists(arquivo_tsv):
         print(f"❌ Erro: O caminho '{arquivo_tsv}' não é um arquivo válido.")
         return
@@ -62,8 +59,7 @@ def process_tsv_input(arquivo_tsv, coluna_texto, output_file):
         textos = df[coluna_texto].dropna().tolist()
         resultados = [classify_text(texto) for texto in textos]
 
-        output_path = os.path.join("data", "processed", output_file)  # 🔹 Redireciona para data/processed/
-        salvar_json(resultados, output_path)
+        print(json.dumps(resultados, indent=2, ensure_ascii=False))  # Imprime JSON formatado
 
     except Exception as e:
         print(f"⚠️ Erro inesperado ao processar o TSV: {e}")
@@ -73,13 +69,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Classifica textos com base nos critérios das ODS.")
     
     # Argumentos de entrada
-    parser.add_argument("-i", "--input", type=str, required=True, help="Tipo de entrada: 'texto' ou 'tsv'.")
+    parser.add_argument("-i", "--input", type=str, required=True, choices=["texto", "tsv"], help="Tipo de entrada: 'texto' ou 'tsv'.")
     parser.add_argument("--texto", type=str, help="Texto a ser classificado (obrigatório se -i texto).")
     parser.add_argument("--tsv", type=str, help="Caminho do arquivo TSV (obrigatório se -i tsv).")
     parser.add_argument("--coluna", type=str, default="Resumo", help="Nome da coluna do TSV que contém o texto.")
-
-    # Argumento de saída
-    parser.add_argument("-o", "--output", type=str, required=True, help="Nome do arquivo JSON de saída (será salvo em data/processed/).")
 
     args = parser.parse_args()
 
@@ -87,13 +80,10 @@ if __name__ == "__main__":
         if not args.texto:
             print("❌ Erro: Você deve fornecer um texto com --texto ao usar -i texto.")
         else:
-            process_text_input(args.texto, args.output)
+            process_text_input(args.texto)
 
     elif args.input == "tsv":
         if not args.tsv:
             print("❌ Erro: Você deve fornecer um arquivo TSV com --tsv ao usar -i tsv.")
         else:
-            process_tsv_input(args.tsv, args.coluna, args.output)
-
-    else:
-        print("❌ Erro: O parâmetro -i deve ser 'texto' ou 'tsv'.")
+            process_tsv_input(args.tsv, args.coluna)

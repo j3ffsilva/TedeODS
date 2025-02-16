@@ -77,3 +77,7 @@ class ODS08Classifier(BaseODSClassifier):
             r'inclus[ãa]o financeira',
             r'acesso a servi[çc]os banc[áa]rios'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

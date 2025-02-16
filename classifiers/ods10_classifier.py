@@ -29,3 +29,7 @@ class ODS10Classifier(BaseODSClassifier):
             r'transforma[çc][ãa]o econ[ôo]mica',
             r'mercado global.*empoderamento'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''    

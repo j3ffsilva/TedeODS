@@ -69,3 +69,7 @@ class ODS15Classifier(BaseODSClassifier):
             r'conserva[çc][ãa]o baseada na comunidade',
             r'conflito entre humanos e animais selvagens'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''    

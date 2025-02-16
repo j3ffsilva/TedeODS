@@ -38,3 +38,7 @@ class ODS06Classifier(BaseODSClassifier):
             r'[áa]gua cinza',
             r'[áa]gua negra'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

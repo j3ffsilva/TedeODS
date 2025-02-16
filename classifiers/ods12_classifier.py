@@ -49,3 +49,7 @@ class ODS12Classifier(BaseODSClassifier):
             r'consumo.*(uso de recursos|derramamento)',
             r'produ[çc][ãa]o.*(uso de recursos|derramamento)'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

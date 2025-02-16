@@ -30,3 +30,7 @@ class ODS01Classifier(BaseODSClassifier):
             r'banco de alimentos',
             r'bancos de alimentos'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

@@ -56,3 +56,7 @@ class ODS07Classifier(BaseODSClassifier):
             r'assist[êe]ncia oficial ao desenvolvimento.*eletricidade',
             r'desenvolvimento energ[ée]tico.*pa[ií]ses em desenvolvimento'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

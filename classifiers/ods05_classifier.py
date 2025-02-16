@@ -69,3 +69,7 @@ class ODS05Classifier(BaseODSClassifier):
             r'pequena propriet[áa]ria',
             r'transversaliza[çc][ãa]o de g[êe]nero'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''

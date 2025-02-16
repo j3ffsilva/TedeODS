@@ -48,3 +48,7 @@ class ODS11Classifier(BaseODSClassifier):
             r'edif[íi]cio[s]?|pr[éé]dio[s]? que inclui a natureza',
             r'edif[íi]cio[s]?|pr[éé]dios inclusivos da natureza'
         ]
+    
+    def get_excecoes(self):
+        """Define padrões de exclusão."""
+        return r''
