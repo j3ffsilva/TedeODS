@@ -6,31 +6,33 @@ class ODS01Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            r'extrema pobreza',
-            r'al[íi]vio da pobreza',
-            r'erradica[çc][ãa]o da pobreza',
-            r'redu[çc][ãa]o da pobreza',
-            r'linha internacional de pobreza',
-            r'ajuda financeira.*pobreza',
-            r'ajuda financeira.*(pobre|pobres)',
-            r'ajuda financeira.*divis[ãa]o norte-sul',
-            r'desenvolvimento financeiro.*pobreza',
-            r'empoderamento financeiro',
-            r'efeito[s]? sobre a distribui[çc][ãa]o|efeito[s]? distributivo[s]?',
-            r'trabalho infantil',
-            r'ajuda ao desenvolvimento',
-            r'prote[çc][ãa]o social',
-            r'sistema de prote[çc][ãa]o social',
-            r'prote[çc][ãa]o social.*acesso',
-            r'microfinanc\w*',
-            r'resili[êe]ncia dos pobres',
-            r'rede de seguran[çc]a.*(pobre[s]?|vulner[áa]vel[eis]*)',
-            r'recurso econ[ôo]mico.*acesso',
-            r'recursos econ[ôo]micos.*acesso',
-            r'banco de alimentos',
-            r'bancos de alimentos'
-        ]
-    
+            # Termos simples (OR)
+            r'\bextrema\s*pobreza\b',
+            r'\bal[íi]vio\s*da\s*pobreza\b',
+            r'\berradica[çc][ãa]o\s*da\s*pobreza\b',
+            r'\bredu[çc][ãa]o\s*da\s*pobreza\b',
+            r'\blinha\s*internacional\s*de\s*pobreza\b',
+            r'\bempoderamento\s*financeiro\b',
+            r'\befeito[s]?\s*sobre\s*a\s*distribui[çc][ãa]o\b|\befeito[s]?\s*distributivo[s]?\b',
+            r'\btrabalho\s*infantil\b',
+            r'\bajuda\s*ao\s*desenvolvimento\b',
+            r'\bprote[çc][ãa]o\s*social\b',
+            r'\bsistema\s*de\s*prote[çc][ãa]o\s*social\b',
+            r'\bmicrofinanc\w*\b',
+            r'\bresili[êe]ncia\s*dos\s*pobres\b',
+            r'\bbanco\s*de\s*alimentos\b',
+            r'\bbancos\s*de\s*alimentos\b',
+
+            # Relações Lógicas (AND) consecutivas
+            r'\bajuda\s*financeira.*pobreza\b',
+            r'\bajuda\s*financeira.*(pobre|pobres)\b',
+            r'\bajuda\s*financeira.*divis[ãa]o\s*norte-sul\b',
+            r'\bdesenvolvimento\s*financeiro.*pobreza\b',
+            r'\bprote[çc][ãa]o\s*social.*acesso\b',
+            r'\brede\s*de\s*seguran[çc]a.*(pobre[s]?|vulner[áa]vel[eis]*)\b',
+            r'\brecurso\s*econ[ôo]mico.*acesso\b',
+            r'\brecursos\s*econ[ôo]micos.*acesso\b'
+        ]    
     def get_excecoes(self):
         """Define padrões de exclusão."""
         return r''
