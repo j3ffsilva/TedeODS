@@ -1,30 +1,35 @@
 TITLE-ABS-KEY (
     ( {seguro} 
-        E ( {acesso à água} OU {água potável} ) 
+      E ( 
+        {acesso à água} 
+            OU {água potável} ) 
     ) 
     OU ( {limpa} 
-        E ( {água potável} OU {fonte de água} ) 
+        E ( {água potável} 
+            OU {fonte de água} 
+        ) 
     ) 
-    OU ( {água} 
+    OU ( 
+        {água} 
         E ( 
-            {saneamento e higiene} 
+        {saneamento e higiene} 
             OU {saneamento e higiene} 
             OU {qualidade} 
             OU {recurso}
-            E (
-                {disponibilidade de água} 
-                OU {eficiência do uso da água} 
-                OU {abastecimento de água} 
-                OU {água potável} 
-                OU { banheiro higiênico} 
-                OU {banheiros higiênicos} 
-                OU {membrana anti-incrustante} 
-                OU {membranas anti-incrustantes} 
-                OU {gestão da água} 
-                OU {toxicologia aquática} 
-                OU {toxicologia da água} 
-                OU { ecotoxicologia aquática} 
-                OU {ecotoxicologia da água} 
+        E (
+        {disponibilidade de água} 
+            OU {eficiência do uso da água} 
+            OU {abastecimento de água} 
+            OU {água potável} 
+            OU { banheiro higiênico} 
+            OU {banheiros higiênicos} 
+            OU {membrana anti-incrustante} 
+            OU {membranas anti-incrustantes} 
+            OU {gestão da água} 
+            OU {toxicologia aquática} 
+            OU {toxicologia da água} 
+            OU {ecotoxicologia aquática} 
+            OU {ecotoxicologia da água} 
             )
         ) 
     ) 
@@ -38,9 +43,8 @@ TITLE-ABS-KEY (
     ) 
     OU ( {água doce/fresca} 
         E ( 
-            { segurança hídrica} 
+            {segurança hídrica} 
             OU {escassez de água} 
-            OU ( {água residual} E “tratamento”) 
             OU ( {água residual} E “tratamento”) 
             OU {conservação da água} 
             OU {pegada hídrica} 
@@ -76,7 +80,6 @@ TITLE-ABS-KEY (
         ( {poluição da água} OU {poluente da água} ) 
         E ( 
             ( {água residual} E {tratamento}) 
-            OU ( {água residual} E {tratamento})
         )
     )
     OU {disponibilidade de água doce} 
@@ -88,6 +91,4 @@ TITLE-ABS-KEY (
     OU {água negra} 
 ) 
 E NÃO {estudo da carga global de doenças}
-E PUBYEAR < 2018 
-E PUBYEAR > 2012 
 )

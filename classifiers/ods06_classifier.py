@@ -6,39 +6,43 @@ class ODS06Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            r'seguro.*(acesso [àa] [áa]gua|[áa]gua pot[áa]vel)',
-            r'limpa.*([áa]gua pot[áa]vel|fonte de [áa]gua)',
-            r'[áa]gua.*(saneamento e higiene|qualidade|recurso)',
-            r'[áa]gua.*(disponibilidade de [áa]gua|efici[êe]ncia do uso da [áa]gua|abastecimento de [áa]gua)',
-            r'[áa]gua.*(banheiro higi[êe]nico|banheiros higi[êe]nicos)',
-            r'[áa]gua.*(membrana anti-incrustante|membranas anti-incrustantes)',
-            r'[áa]gua.*gest[ãa]o da [áa]gua',
-            r'[áa]gua.*(toxicologia aqu[áa]tica|toxicologia da [áa]gua)',
-            r'[áa]gua.*(ecotoxicologia aqu[áa]tica|ecotoxicologia da [áa]gua)',
-            r'[áa]gua doce.*qualidade da [áa]gua.*(poluente|polui[çc][ãa]o|contamina\w*)',
-            r'[áa]gua doce.*(seguran[çc]a h[íi]drica|escassez de [áa]gua)',
-            r'[áa]gua residual.*tratamento',
-            r'conserva[çc][ãa]o da [áa]gua',
-            r'pegada h[íi]drica',
-            r'infraestrutura h[íi]drica',
-            r'polui[çc][ãa]o da [áa]gua',
-            r'purifica[çc][ãa]o da [áa]gua',
-            r'uso[s]? da [áa]gua',
-            r'saneamento\w*',
-            r'esgoto\w*',
-            r'[áa]gua.*ecossistema.*(prote[çc][ãa]o de|disruptor end[óo]crino|disruptores end[óo]crinos)',
-            r'[áa]gua.*gest[ãa]o da [áa]gua.*(remedia[çc][ãa]o da polui[çc][ãa]o|remo[çc][ãa]o de poluentes)',
-            r'[áa]gua subterr[âa]nea.*[áa]gua doce',
-            r'(polui[çc][ãa]o da [áa]gua|poluente da [áa]gua).*([áa]gua residual.*tratamento)',
-            r'disponibilidade de [áa]gua doce',
-            r'escassez de [áa]gua',
-            r'fecalismo a c[ée]u aberto',
-            r'[áa]gua azul',
-            r'[áa]gua verde',
-            r'[áa]gua cinza',
-            r'[áa]gua negra'
+            # 1. Seguro e acesso à água ou água potável
+            r'\bseguro.*(acesso\s*[àa]\s*[áa]gua|[áa]gua\s*pot[áa]vel)\b',
+
+            # 2. Limpa e água potável ou fonte de água
+            r'\blimpa.*([áa]gua\s*pot[áa]vel|fonte\s*de\s*[áa]gua)\b',
+
+            # 3. Água e saneamento, qualidade ou recurso com subcondições
+            r'\b[áa]gua.*?(saneamento\s*e\s*higiene|qualidade|recurso).*?(disponibilidade\s*de\s*[áa]gua|efici[êe]ncia\s*do\s*uso\s*da\s*[áa]gua|abastecimento\s*de\s*[áa]gua|[áa]gua\s*pot[áa]vel|banheiro[s]?\s*higi[êe]nico[s]?|membrana[s]?\s*anti-incrustante[s]?|gest[ãa]o\s*da\s*[áa]gua|toxicologia\s*(aqu[áa]tica|da\s*[áa]gua)|ecotoxicologia\s*(aqu[áa]tica|da\s*[áa]gua))\b',
+
+            # 4. Água doce, qualidade e poluente/poluição/contaminação
+            r'\b[áa]gua\s*(doce|fresca).*qualidade\s*da\s*[áa]gua.*(poluente|polui[çc][ãa]o|contamina.*)\b',
+
+            # 5. Água doce e segurança hídrica ou escassez de água
+            r'\b[áa]gua\s*(doce|fresca).*?\b(seguran[çc]a\s*h[íi]drica|escassez\s*de\s*[áa]gua|[áa]gua\s*residual.*?tratamento|conserva[çc][ãa]o\s*da\s*[áa]gua|pegada\s*h[íi]drica|infraestrutura\s*h[íi]drica|polui[çc][ãa]o\s*da\s*[áa]gua|purifica[çc][ãa]o\s*da\s*[áa]gua|uso[s]?\s*da\s*[áa]gua|saneamento\w*|esgoto\w*)\b',
+            
+            # 6. Água, ecossistema e proteção ou disruptores endócrinos
+            r'\b[áa]gua.*?ecossistema.*?(prote[çc][ãa]o\s*de|disruptor(es)?\s*end[óo]crino[s]?)\b(?!.*?\bmarinhos\b)',
+
+            # 7. Água, gestão e poluentes
+            r'\b[áa]gua.*?gest[ãa]o\s*da\s*[áa]gua.*?(remedia[çc][ãa]o\s*da\s*polui[çc][ãa]o|remo[çc][ãa]o\s*de\s*poluentes)\b',
+
+            # 8. Água subterrânea e água doce
+            r'\b[áa]gua\s*subterr[âa]nea.*[áa]gua\s*doce\b',
+
+            # 9. Poluição e água residual com tratamento
+            r'\b(polui[çc][ãa]o\s*da\s*[áa]gua|poluente\s*da\s*[áa]gua).*[áa]gua\s*residual.*tratamento\b',
+
+            # 10. Termos simples (OR)
+            r'\bdisponibilidade\s*de\s*[áa]gua\s*doce\b',
+            r'\bescassez\s*de\s*[áa]gua\b',
+            r'\bfecalismo\s*a\s*c[ée]u\s*aberto\b',
+            r'\b[áa]gua\s*azul\b',
+            r'\b[áa]gua\s*verde\b',
+            r'\b[áa]gua\s*cinza\b',
+            r'\b[áa]gua\s*negra\b'
         ]
-    
+
     def get_excecoes(self):
         """Define padrões de exclusão."""
-        return r''
+        return r'estudo\s*da\s*carga\s*global\s*de\s*doen[çc]as\b'
