@@ -6,47 +6,54 @@ class ODS14Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            r'marinho',
-            r'oceano[s]?',
-            r'mar[es]?',
-            r'costa\w*',
-            r'mangue',
-            r'ciclo[s]? da [áa]gua',
-            r'ciclo[s]? biogeoqu[íi]mico[s]?',
-            r'modelo[s]? de circula[çc][ãa]o oce[âa]nica',
-            r'modelagem de circula[çc][ãa]o oce[âa]nica',
-            r'iceocean|oceano gelado',
-            r'eutr[óo]fica\w*',
-            r'marinha',
-            r'branqueamento de corais',
-            r'manejo|gest[ãa]o costeir[oa]',
-            r'habitat[s]? costeir[oa]s?',
-            r'lixo marinho',
-            r'acidifica[çc][ãa]o dos oceanos',
-            r'acidifica[çc][ãa]o.*[áa]gua do mar',
-            r'pesca',
-            r'pesca excessiva',
-            r'rendimento sustent[áa]vel',
-            r'[áa]rea[s]? marinha[s]? protegida[s]?',
-            r'conserva[çc][ãa]o marinha',
-            r'ecoturismo',
-            r'conserva[çc][ãa]o baseada na comunidade',
-            r'deslizamento de terra marinha',
-            r'polui[çc][ãa]o marinha',
-            r'escoamento de nutrientes',
-            r'ecoturismo costeiro',
-            r'pesca destrutiva',
-            r'pesca local',
-            r'pescadores artesanais',
-            r'direitos de pesca',
-            r'riqueza de esp[ée]cies',
-            r'conhecimento ecol[óo]gico tradicional',
-            r'pequenas ilhas em desenvolvimento',
-            r'cota marinha',
-            r'economia marinha',
-            r'pol[íi]tica marinha'
+            # Termos primários
+            r'\bmarinho\b',
+            r'\boceano[s]?\b',
+            r'\bmar[es]?\b',
+            r'\bcosta\w*\b',
+            r'\bmangue\b',
+
+            # Combinações específicas
+            r'\bciclo[s]?\s*da\s*[áa]gua\b',
+            r'\bciclo[s]?\s*biogeoqu[íi]mico[s]?\b',
+            r'\bmodelo[s]?\s*de\s*circula[çc][ãa]o\s*oce[âa]nica\b',
+            r'\bmodelagem\s*de\s*circula[çc][ãa]o\s*oce[âa]nica\b',
+            r'\biceocean|oceano\s*gelado\b',
+            r'\beutr[óo]fica\w*\b',
+            r'\bmarinha\b',
+            r'\bbranqueamento\s*de\s*corais\b',
+            r'\bmanejo|gest[ãa]o\s*costeir[oa]\b',
+            r'\bhabitat[s]?\s*costeir[oa]s?\b',
+            r'\blixo\s*marinho\b',
+            r'\bacidifica[çc][ãa]o\s*dos\s*oceanos\b',
+            r'\bacidifica[çc][ãa]o.*[áa]gua\s*do\s*mar\b',
+
+            # Pesca e conservação
+            r'\bpesca\b',
+            r'\bpesca\s*excessiva\b',
+            r'\brendimento\s*sustent[áa]vel\b',
+            r'\b[áa]rea[s]?\s*marinha[s]?\s*protegida[s]?\b',
+            r'\bconserva[çc][ãa]o\s*marinha\b',
+            r'\becoturismo\b',
+            r'\bconserva[çc][ãa]o\s*baseada\s*na\s*comunidade\b',
+            r'\bdeslizamento\s*de\s*terra\s*marinha\b',
+            r'\bpolui[çc][ãa]o\s*marinha\b',
+            r'\bescoamento\s*de\s*nutrientes\b',
+            r'\becoturismo\s*costeiro\b',
+
+            # Pesca e direitos
+            r'\bpesca\s*destrutiva\b',
+            r'\bpesca\s*local\b',
+            r'\bpescadores\s*artesanais\b',
+            r'\bdireitos\s*de\s*pesca\b',
+            r'\briqueza\s*de\s*esp[ée]cies\b',
+            r'\bconhecimento\s*ecol[óo]gico\s*tradicional\b',
+            r'\bpequenas\s*ilhas\s*em\s*desenvolvimento\b',
+            r'\bcota\s*marinha\b',
+            r'\beconomia\s*marinha\b',
+            r'\bpol[íi]tica\s*marinha\b'
         ]
     
     def get_excecoes(self):
         """Define padrões de exclusão."""
-        return r''
+        return r'\b(?:paleoclima|paleoceanografia|radiocarbono|gen[ée]tica|medicina|droga|engenharia|aerossol)\b'
