@@ -6,38 +6,41 @@ class ODS13Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            r'a[çc][ãa]o clim[áa]tica',
-            r'adapta[çc][ãa]o clim[áa]tica',
-            r'mudan[çc]a clim[áa]tica',
-            r'capitalismo clim[áa]tico',
+            # Termos principais
+            r'a[çc][ãa]o\s*clim[áa]tica',
+            r'adapta[çc][ãa]o\s*clim[áa]tica',
+            r'mudan[çc]a\s*clim[áa]tica',
+            r'capitalismo\s*clim[áa]tico',
             r'ipcc',
-            r'efeito clim[áa]tico',
-            r'equidade clim[áa]tica',
-            r'feedback clim[áa]tico',
-            r'finan[çc]as clim[áa]ticas',
-            r'financiamento da mudan[çc]a clim[áa]tica',
-            r'imposi[çc][ãa]o do clima',
-            r'governan[çc]a clim[áa]tica',
-            r'impacto clim[áa]tico',
-            r'investimento clim[áa]tico',
-            r'justi[çc]a clim[áa]tica',
-            r'mitiga[çc][ãa]o clim[áa]tica',
-            r'modelo[s]? clim[áa]tico[s]?',
-            r'modelagem clim[áa]tica',
-            r'pol[íi]tica[s]? clim[áa]tica[s]?',
-            r'risco[s]? clim[áa]tico[s]?',
-            r'servi[çc]os? clim[áa]tico[s]?',
-            r'previs[ãa]o clim[áa]tica|previs[õo]es clim[áa]ticas',
-            r'sinal[s]? clim[áa]tico[s]?',
-            r'ponto de inflex[ãa]o clim[áa]tica',
-            r'varia[çc][ãa]o[s]? clim[áa]tica[s]?',
+            r'efeito\s*clim[áa]tico',
+            r'equidade\s*clim[áa]tica',
+            r'feedback\s*clim[áa]tico',
+            r'finan[çc]as\s*clim[áa]ticas',
+            r'financiamento\s*da\s*mudan[çc]a\s*clim[áa]tica',
+            r'imposi[çc][ãa]o\s*do\s*clima',
+            r'governan[çc]a\s*clim[áa]tica',
+            r'impacto\s*clim[áa]tico',
+            r'investimento\s*clim[áa]tico',
+            r'justi[çc]a\s*clim[áa]tica',
+            r'mitiga[çc][ãa]o\s*clim[áa]tica',
+            r'modelo[s]?\s*clim[áa]tico[s]?',
+            r'modelagem\s*clim[áa]tica',
+            r'pol[íi]tica[s]?\s*clim[áa]tica[s]?',
+            r'risco[s]?\s*clim[áa]tico[s]?',
+            r'servi[çc]o[s]?\s*clim[áa]tico[s]?',
+            r'previs[ãa]o[s]?\s*clim[áa]tica[s]?',
+            r'sinal[s]?\s*clim[áa]tico[s]?',
+            r'ponto\s*de\s*inflex[ãa]o\s*clim[áa]tica',
+            r'varia[çc][ãa]o[s]?\s*clim[áa]tica[s]?',
             r'ecoclimatologia',
-            r'fundo verde do clima|fundo verde para o clima',
-            r'clima[s]? regional[es]?',
-            r'clima[s]? urbano[s]?',
-            r'clima.*(gest[ãa]o adaptativa|conscientiza[çc][ãa]o|bioeconomia|carbono|tomada de decis[ãa]o|redu[çc][ãa]o do risco de desastres|educa[çc][ãa]o ambiental|educa[çc][ãa]o para o desenvolvimento sustent[áa]vel|conserva[çc][ãa]o de energia|emiss[õo]es?|extremo|cadeia alimentar|cadeias alimentares|estrutura|perigo[s]?|ilha[s]?|uso da terra|megacidade[s]?|consumo|produ[çc][ãa]o|pequenas ilhas em desenvolvimento|antropoceno|atmosfera[s]?|mecanismo de desenvolvimento limpo|recuo das geleiras|aquecimento|estufa|intera[çc][ãa]o gelo-oceano|intera[çc][õo]es gelo-oceano|ciclo do nitrog[êe]nio|ciclos do nitrog[êe]nio|acidifica[çc][ãa]o dos oceanos|for[çc]ante radiativa|gelo marinho|n[íi]vel do mar|n[íi]veis do mar|expans[ãa]o t[ée]rmica|unfccc|oz[ôo]nio)'
+            r'fundo\s*verde\s*(do|para\s*o)\s*clima',
+            r'clima[s]?\s*regional[es]?',
+            r'clima[s]?\s*urbano[s]?',
+
+            # Combinações com "clima"
+            r'clima.*?(?:gest[ãa]o\s*adaptativa|conscientiza[çc][ãa]o|bioeconomia|carbono|tomada\s*de\s*decis[ãa]o|redu[çc][ãa]o\s*do\s*risco\s*de\s*desastres|educa[çc][ãa]o\s*ambiental|educa[çc][ãa]o\s*para\s*o\s*desenvolvimento\s*sustent[áa]vel|conserva[çc][ãa]o\s*de\s*energia|emiss[õo]es?|extremo|cadeia\s*alimentar|cadeias\s*alimentares|estrutura|perigo[s]?|ilha[s]?|uso\s*da\s*terra|megacidade[s]?|consumo|produ[çc][ãa]o|pequenas\s*ilhas\s*em\s*desenvolvimento|antropoceno|atmosfera[s]?|mecanismo\s*de\s*desenvolvimento\s*limpo|recuo\s*das\s*geleiras|aquecimento|estufa|intera[çc][ãa]o\s*gelo-oceano|intera[çc][õo]es\s*gelo-oceano|ciclo\s*do\s*nitrog[êe]nio|ciclos\s*do\s*nitrog[êe]nio|acidifica[çc][ãa]o\s*dos\s*oceanos|for[çc]ante\s*radiativa|gelo\s*marinho|n[íi]vel\s*do\s*mar|n[íi]veis\s*do\s*mar|expans[ãa]o\s*t[ée]rmica|unfccc|oz[ôo]nio)'
         ]
     
     def get_excecoes(self):
         """Define padrões de exclusão."""
-        return r''
+        return r'\b(?:droga|geomorfologia)\b'
