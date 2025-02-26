@@ -23,10 +23,13 @@ class BaseODSClassifier:
         if self.excecao and re.search(self.excecao, texto, re.IGNORECASE):
             return False, None
 
-        # Verifica cada padrão e captura a correspondência
+        # Verifica cada padrão
         for p in self.padroes:
-            match = re.search(p, texto, re.IGNORECASE | re.MULTILINE)
-            if match:
-                return True, match.group(0)  # Retorna a string capturada completa
+            # Lookahead para validar a presença
+            if re.search(p, texto, re.IGNORECASE | re.MULTILINE):
+                # Captura do contexto completo da frase com até 50 palavras em torno
+                captura = re.search(r'\b(?:\w+\s*){0,50}?(?:' + p + r')(?:\s*\w+){0,50}\b', texto, re.IGNORECASE)
+                if captura:
+                    return True, captura.group(0)  # Retorna o contexto completo
 
         return False, None
