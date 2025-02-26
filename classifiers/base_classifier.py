@@ -17,16 +17,16 @@ class BaseODSClassifier:
 
     def classify(self, texto):
         """Verifica se o texto contém os padrões esperados, respeitando exceções e capturando a substring detectada."""
-        texto = texto.lower().strip()  # Normaliza para letras minúsculas e remove espaços extras
+        texto = texto.lower().strip()
 
         # Se o texto contiver a exceção, retorna False
         if self.excecao and re.search(self.excecao, texto, re.IGNORECASE):
             return False, None
 
-        # Verifica cada padrão
+        # Verifica cada padrão e captura a correspondência
         for p in self.padroes:
             match = re.search(p, texto, re.IGNORECASE | re.MULTILINE)
             if match:
-                return True, match.group(0)  # Captura a correspondência completa
-        
+                return True, match.group(0)  # Retorna a string capturada completa
+
         return False, None
