@@ -6,30 +6,35 @@ class ODS10Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            r'igualdade.*(econ[ôo]mica|financeira|socioecon[ôo]mica)',
-            r'desigualdade.*(econ[ôo]mica|financeira|socioecon[ôo]mica)',
-            r'pol[íi]tica[s]?\s*de\s*reforma\s*econ[ôo]mica',
-            r'inclus[ãa]o\s*pol[íi]tica',
-            r'pol[íi]tica[s]?\s*de\s*prote[çc][ãa]o\s*social',
-            r'imigra[çc][ãa]o(?!.*(qu[íi]mica|doen[çc]a|biodiversidade))',
-            r'emigra[çc][ãa]o(?!.*(qu[íi]mica|doen[çc]a|biodiversidade))',
-            r'investimento\s*estrangeiro\s*direto',
-            r'lacuna[s]?\s*de\s*desenvolvimento',
-            r'remessa\s*de\s*migrantes',
-            r'migra[çc][ãa]o\s*respons[áa]vel',
-            r'pol[íi]tica[s]?\s*de\s*migra[çc][ãa]o|migrat[óo]ria[s]?',
-            r'divis[ãa]o\s*norte-sul',
-            r'desenvolvimento.*(tarifas?|tarifa\s*zero|acesso\s*isento\s*de\s*impostos)',
-            r'exclus[ãa]o\s*social',
-            r'marginaliza[çc][ãa]o\s*econ[ôo]mica',
-            r'desigualdade\s*de\s*renda',
-            r'lei[s]?\s*discriminat[óo]ria[s]?',
-            r'pol[íi]tica[s]?\s*discriminat[óo]ria[s]?',
-            r'empoderamento\s*econ[ôo]mico',
-            r'transforma[çc][ãa]o\s*econ[ôo]mica',
-            r'mercado\s*global.*empoderamento'
+            # Frases fixas
+            r'\b(?:igualdade|desigualdade)\s+(?:econ[ôo]mica|financeira|socioecon[ôo]mica)\b',
+            r'\bpol[íi]tica[s]?\s*de\s*reforma\s*econ[ôo]mica\b',
+            r'\binclus[ãa]o\s*pol[íi]tica\b',
+            r'\bpol[íi]tica[s]?\s*de\s*prote[çc][ãa]o\s*social\b',
+            r'\binvestimento\s*estrangeiro\s*direto\b',
+            r'\blacuna[s]?\s*de\s*desenvolvimento\b',
+            r'\bremessa\s*de\s*migrantes\b',
+            r'\bmigra[çc][ãa]o\s*respons[áa]vel\b',
+            r'\bpol[íi]tica[s]?\s*de\s*migra[çc][ãa]o|migrat[óo]ria[s]?\b',
+            r'\bdivis[ãa]o\s*norte-sul\b',
+            r'\bexclus[ãa]o\s*social\b',
+            r'\bmarginaliza[çc][ãa]o\s*econ[ôo]mica\b',
+            r'\bdesigualdade\s*de\s*renda\b',
+            r'\blei[s]?\s*discriminat[óo]ria[s]?\b',
+            r'\bpol[íi]tica[s]?\s*discriminat[óo]ria[s]?\b',
+            r'\bempoderamento\s*econ[ôo]mico\b',
+            r'\btransforma[çc][ãa]o\s*econ[ôo]mica\b',
+
+            # Migração e exclusões (imigração/emigração sem relação com química, doença ou biodiversidade)
+            r'(?=.*\b(?:imigra[çc][ãa]o|emigra[çc][ãa]o)\b)(?!.*\b(?:qu[íi]mica|doen[çc]a|biodiversidade)\b)',
+
+            # Desenvolvimento + tarifas ou isenção de impostos
+            r'(?=.*\bdesenvolvimento\b)(?=.*\b(?:tarifas?|tarifa\s*zero|acesso\s*isento\s*de\s*impostos)\b)',
+
+            # Mercado global + empoderamento (qualquer ordem)
+            r'(?=.*\bmercado\s*global\b)(?=.*\bempoderamento\b)'
         ]
     
     def get_excecoes(self):
         """Define padrões de exclusão."""
-        return r''    
+        return r''
