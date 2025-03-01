@@ -6,52 +6,24 @@ class ODS14Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            # Termos primários
-            r'(?=.*\bmarinho\b)',
-            r'(?=.*\boceano[s]?\b)',
-            r'(?=.*\bmar[es]?\b)',
-            r'(?=.*\bcosta\w*\b)',
-            r'(?=.*\bmangue\b)',
-
-            # Combinações específicas
-            r'(?=.*\bciclo[s]?\s*da\s*[áa]gua\b)',
-            r'(?=.*\bciclo[s]?\s*biogeoqu[íi]mico[s]?\b)',
-            r'(?=.*\bmodelo[s]?\s*de\s*circula[çc][ãa]o\s*oce[âa]nica\b)',
-            r'(?=.*\bmodelagem\s*de\s*circula[çc][ãa]o\s*oce[âa]nica\b)',
-            r'(?=.*\biceocean|oceano\s*gelado\b)',
-            r'(?=.*\beutr[óo]fica\w*\b)',
-            r'(?=.*\bmarinha\b)',
-            r'(?=.*\bbranqueamento\s*de\s*corais\b)',
-            r'(?=.*\bmanejo|gest[ãa]o\s*costeir[oa]\b)',
-            r'(?=.*\bhabitat[s]?\s*costeir[oa]s?\b)',
-            r'(?=.*\blixo\s*marinho\b)',
-            r'(?=.*\bacidifica[çc][ãa]o\s*dos\s*oceanos\b)',
-            r'(?=.*\bacidifica[çc][ãa]o.*[áa]gua\s*do\s*mar\b)',
-
-            # Pesca e conservação
-            r'(?=.*\bpesca\b)',
-            r'(?=.*\bpesca\s*excessiva\b)',
-            r'(?=.*\brendimento\s*sustent[áa]vel\b)',
-            r'(?=.*\b[áa]rea[s]?\s*marinha[s]?\s*protegida[s]?\b)',
-            r'(?=.*\bconserva[çc][ãa]o\s*marinha\b)',
-            r'(?=.*\becoturismo\b)',
-            r'(?=.*\bconserva[çc][ãa]o\s*baseada\s*na\s*comunidade\b)',
-            r'(?=.*\bdeslizamento\s*de\s*terra\s*marinha\b)',
-            r'(?=.*\bpolui[çc][ãa]o\s*marinha\b)',
-            r'(?=.*\bescoamento\s*de\s*nutrientes\b)',
-            r'(?=.*\becoturismo\s*costeiro\b)',
-
-            # Pesca e direitos
-            r'(?=.*\bpesca\s*destrutiva\b)',
-            r'(?=.*\bpesca\s*local\b)',
-            r'(?=.*\bpescadores\s*artesanais\b)',
-            r'(?=.*\bdireitos\s*de\s*pesca\b)',
-            r'(?=.*\briqueza\s*de\s*esp[ée]cies\b)',
-            r'(?=.*\bconhecimento\s*ecol[óo]gico\s*tradicional\b)',
-            r'(?=.*\bpequenas\s*ilhas\s*em\s*desenvolvimento\b)',
-            r'(?=.*\bcota\s*marinha\b)',
-            r'(?=.*\beconomia\s*marinha\b)',
-            r'(?=.*\bpol[íi]tica\s*marinha\b)'
+            # Lookahead para garantir pelo menos um termo do grupo 1 (mar, oceano, costa, etc.)
+            r'(?=.*\b(?:marinho|oceano[s]?|mar[es]?|costa\w*|mangue)\b)'
+            # Lookahead para garantir pelo menos um termo do grupo 2 (processos oceânicos, conservação, pesca, etc.)
+            r'(?=.*\b(?:ciclo[s]?\s*da\s*[áa]gua|ciclo[s]?\s*biogeoqu[íi]mico[s]?|'
+            r'modelo[s]?\s*de\s*circula[çc][ãa]o\s*oce[âa]nica|'
+            r'modelagem\s*de\s*circula[çc][ãa]o\s*oce[âa]nica|'
+            r'iceocean|oceano\s*gelado|eutr[óo]fica\w*|marinha|branqueamento\s*de\s*corais|'
+            r'manejo|gest[ãa]o\s*costeir[oa]|habitat[s]?\s*costeir[oa]s?|'
+            r'lixo\s*marinho|acidifica[çc][ãa]o\s*dos\s*oceanos|'
+            r'acidifica[çc][ãa]o.*[áa]gua\s*do\s*mar|pesca|pesca\s*excessiva|'
+            r'rendimento\s*sustent[áa]vel|[áa]rea[s]?\s*marinha[s]?\s*protegida[s]?|'
+            r'conserva[çc][ãa]o\s*marinha|ecoturismo|conserva[çc][ãa]o\s*baseada\s*na\s*comunidade|'
+            r'deslizamento\s*de\s*terra\s*marinha|polui[çc][ãa]o\s*marinha|'
+            r'escoamento\s*de\s*nutrientes|ecoturismo\s*costeiro|'
+            r'pesca\s*destrutiva|pesca\s*local|pescadores\s*artesanais|'
+            r'direitos\s*de\s*pesca|riqueza\s*de\s*esp[ée]cies|'
+            r'conhecimento\s*ecol[óo]gico\s*tradicional|pequenas\s*ilhas\s*em\s*desenvolvimento|'
+            r'cota\s*marinha|economia\s*marinha|pol[íi]tica\s*marinha)\b)'
         ]
     
     def get_excecoes(self):
