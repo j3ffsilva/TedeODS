@@ -6,9 +6,8 @@ class ODS03Classifier(BaseODSClassifier):
 
     def get_padroes(self):
         return [
-            # Relação {humano} E {saúde*, doença*, remédio*, mortalidade}
-            r'\bhumano.*(sa[úu]de\w*|doen[çc]a\w*|rem[ée]dio\w*|mortalidade)\b',
-            r'\b(sa[úu]de\w*|doen[çc]a\w*|rem[ée]dio\w*|mortalidade)\s+humano\b',
+            # {humano} E ({saúde*} OU {doença*} OU {remédio*} OU {mortalidade})
+            r'(?=.*\bhumano\b)(?=.*\b(?:sa[úu]de\w*|doen[çc]a\w*|rem[ée]dio\w*|mortalidade)\b)',
 
             # Termos isolados
             r'\bs[íi]ndrome\s+da\s+crian[çc]a\s+espancada\b',
@@ -55,8 +54,8 @@ class ODS03Classifier(BaseODSClassifier):
             r'\bexpectativa[s]?\s+de\s+vida\b',
             r'\bpol[íi]tica\s+de\s+sa[úu]de\b',
 
-            # Relação {sistema de saúde} E (acesso OU acessível)
-            r'\bsistema\s+de\s+sa[úu]de.*(acesso|acess[ií]vel)\b',
+            # {sistema de saúde} E (acesso OU acessível)
+            r'(?=.*\bsistema\s+de\s+sa[úu]de\b)(?=.*\b(?:acesso|acess[ií]vel)\b)',
 
             # Outros termos isolados
             r'\brisco[s]?\s+de\s+sa[úu]de\b',
