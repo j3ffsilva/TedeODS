@@ -34,12 +34,14 @@ class ODS02Classifier(BaseODSClassifier):
             r'\bcadeia\s*de\s*valor\s*alimentar\b',
             r'\bmercado\s*de\s*commodities\s*alimentares\b',
 
-            # Combinações lógicas (E)
-            r'\bpequeno\s*produtor.*(fazenda|silvicultura|pastoril|agricultura|pesca|produtor\s*de\s*alimentos|produtores\s*de\s*alimentos)\b',
-            r'\bagricultura\s*pot[áa]ssio\b',
-            r'\btransg[êe]nicos\s*alimentos\b',
-            r'\bseguran[çc]a\s*alimentar.*diversidade\s*gen[ée]tica\b',
-            r'\bmercado\s*de\s*alimentos.*(restri[çc][ãa]o|tarifa|acesso|divis[ãa]o\s*norte-sul|governan[çc]a\s*do\s*desenvolvimento)\b',
+            # Combinações com "E" (permitindo qualquer ordem)
+            r'(?=.*\bpequeno\s*produtor\b)(?=.*\b(?:fazenda|silvicultura|pastoril|agricultura|pesca|produtor\s*de\s*alimentos|produtores\s*de\s*alimentos)\b)',
+            r'(?=.*\bagricultura\b)(?=.*\bpot[áa]ssio\b)',
+            r'(?=.*\btransg[êe]nicos\b)(?=.*\balimentos\b)',
+            r'(?=.*\bseguran[çc]a\s*alimentar\b)(?=.*\bdiversidade\s*gen[ée]tica\b)',
+            r'(?=.*\bmercado\s*de\s*alimentos\b)(?=.*\b(?:restri[çc][ãa]o|tarifa|acesso|divis[ãa]o\s*norte-sul|governan[çc]a\s*do\s*desenvolvimento)\b)',
+
+            # Fertilizante e nutrição alimentar
             r'\bmelhoria\s*da\s*nutri[çc][ãa]o\s*alimentar\b',
             r'\bfertilizante\b'
         ]
