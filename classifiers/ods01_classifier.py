@@ -23,16 +23,17 @@ class ODS01Classifier(BaseODSClassifier):
             r'\bbanco\s*de\s*alimentos\b',
             r'\bbancos\s*de\s*alimentos\b',
 
-            # Relações Lógicas (AND) consecutivas
-            r'\bajuda\s*financeira.*pobreza\b',
-            r'\bajuda\s*financeira.*(pobre|pobres)\b',
-            r'\bajuda\s*financeira.*divis[ãa]o\s*norte-sul\b',
-            r'\bdesenvolvimento\s*financeiro.*pobreza\b',
-            r'\bprote[çc][ãa]o\s*social.*acesso\b',
-            r'\brede\s*de\s*seguran[çc]a.*(pobre[s]?|vulner[áa]vel[eis]*)\b',
-            r'\brecurso\s*econ[ôo]mico.*acesso\b',
-            r'\brecursos\s*econ[ôo]micos.*acesso\b'
-        ]    
+            # Relações Lógicas (AND) permitindo qualquer ordem
+            r'(?=.*\bajuda\s*financeira\b)(?=.*\bpobreza\b)',
+            r'(?=.*\bajuda\s*financeira\b)(?=.*\b(?:pobre|pobres)\b)',
+            r'(?=.*\bajuda\s*financeira\b)(?=.*\bdivis[ãa]o\s*norte-sul\b)',
+            r'(?=.*\bdesenvolvimento\s*financeiro\b)(?=.*\bpobreza\b)',
+            r'(?=.*\bprote[çc][ãa]o\s*social\b)(?=.*\bacesso\b)',
+            r'(?=.*\brede\s*de\s*seguran[çc]a\b)(?=.*\b(?:pobre[s]?|vulner[áa]vel[eis]*)\b)',
+            r'(?=.*\brecurso\s*econ[ôo]mico\b)(?=.*\bacesso\b)',
+            r'(?=.*\brecursos\s*econ[ôo]micos\b)(?=.*\bacesso\b)'
+        ]
+    
     def get_excecoes(self):
         """Define padrões de exclusão."""
         return r''
