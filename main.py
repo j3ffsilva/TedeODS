@@ -13,39 +13,30 @@ def get_classifier(ods_number):
         classifier_class = getattr(modulo, class_name)
         return classifier_class()
     except ModuleNotFoundError:
-        raise ValueError(f"❌ ODS {ods_number} não implementado. Escolha um número entre 1 e 16.")
+        return None
     except AttributeError:
-        raise ValueError(f"❌ A classe `{class_name}` não foi encontrada no módulo ODS {ods_number}.")
+        return None
 
 
 def classify_text(texto):
-    """Classifica um texto e retorna o resultado no formato JSON compatível."""
-    resultados = {
-        "texto": texto,
-        "ods": {}
-    }
-    
+    """Classifica um texto e retorna um dicionário com os resultados."""
+    resultados = {"ods": {}, "ods_numeros": [], "matches": []}
+
     for ods_number in range(1, 17):
         classifier = get_classifier(ods_number)
-        resultado, termo_encontrado = classifier.classify(texto)
-
-        if resultado:
-            ods_key = f"ods{str(ods_number).zfill(2)}"
-            if ods_key not in resultados["ods"]:
-                resultados["ods"][ods_key] = []
-            resultados["ods"][ods_key].append(termo_encontrado)
+        if classifier:
+            resultado, termo_encontrado = classifier.classify(texto)
+            if resultado:
+                ods_key = f"ods{str(ods_number).zfill(2)}"
+                resultados["ods"][ods_key] = termo_encontrado
+                resultados["ods_numeros"].append(ods_number)
+                resultados["matches"].append(termo_encontrado)
 
     return resultados
 
 
-def process_text_input(texto):
-    """Processa um texto passado diretamente na linha de comando."""
-    resultado_json = classify_text(texto)
-    print(json.dumps(resultado_json, indent=2, ensure_ascii=False))  # Imprime JSON formatado
-
-
-def process_tsv_input(arquivo_tsv, coluna_texto):
-    """Processa um arquivo TSV, classifica os textos e imprime o resultado em JSON."""
+def process_tsv_input(arquivo_tsv, coluna_texto, output_tsv):
+    """Processa um arquivo TSV, classifica os textos e salva o resultado em um novo arquivo TSV."""
     if not os.path.exists(arquivo_tsv):
         print(f"❌ Erro: O caminho '{arquivo_tsv}' não é um arquivo válido.")
         return
@@ -56,34 +47,33 @@ def process_tsv_input(arquivo_tsv, coluna_texto):
         if coluna_texto not in df.columns:
             raise KeyError(f"A coluna '{coluna_texto}' não foi encontrada no arquivo TSV.")
 
-        textos = df[coluna_texto].dropna().tolist()
-        resultados = [classify_text(texto) for texto in textos]
+        # Criar novas colunas para ODS e Match
+        df["ODS"] = ""
+        df["Match"] = ""
 
-        print(json.dumps(resultados, indent=2, ensure_ascii=False))  # Imprime JSON formatado
+        for idx, row in df.iterrows():
+            resultado = classify_text(row[coluna_texto])
+            ods_list = resultado["ods_numeros"]
+            matches = resultado["matches"]
+
+            df.at[idx, "ODS"] = f"[{', '.join(map(str, ods_list))}]" if ods_list else "-"
+            df.at[idx, "Match"] = "; ".join(matches) if matches else "-"
+
+        # Salvar o arquivo atualizado
+        df.to_csv(output_tsv, sep="\t", index=False)
+        print(f"✅ Arquivo processado com sucesso: {output_tsv}")
 
     except Exception as e:
         print(f"⚠️ Erro inesperado ao processar o TSV: {e}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Classifica textos com base nos critérios das ODS.")
+    parser = argparse.ArgumentParser(description="Classifica textos com base nos critérios das ODS e salva o resultado no TSV.")
     
-    # Argumentos de entrada
-    parser.add_argument("-i", "--input", type=str, required=True, choices=["texto", "tsv"], help="Tipo de entrada: 'texto' ou 'tsv'.")
-    parser.add_argument("--texto", type=str, help="Texto a ser classificado (obrigatório se -i texto).")
-    parser.add_argument("--tsv", type=str, help="Caminho do arquivo TSV (obrigatório se -i tsv).")
+    parser.add_argument("-i", "--tsv", type=str, required=True, help="Caminho do arquivo TSV de entrada.")
     parser.add_argument("--coluna", type=str, default="Resumo", help="Nome da coluna do TSV que contém o texto.")
+    parser.add_argument("-o", "--output", type=str, required=True, help="Caminho do arquivo TSV de saída.")
 
     args = parser.parse_args()
 
-    if args.input == "texto":
-        if not args.texto:
-            print("❌ Erro: Você deve fornecer um texto com --texto ao usar -i texto.")
-        else:
-            process_text_input(args.texto)
-
-    elif args.input == "tsv":
-        if not args.tsv:
-            print("❌ Erro: Você deve fornecer um arquivo TSV com --tsv ao usar -i tsv.")
-        else:
-            process_tsv_input(args.tsv, args.coluna)
+    process_tsv_input(args.tsv, args.coluna, args.output)
