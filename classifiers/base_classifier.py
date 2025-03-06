@@ -25,11 +25,12 @@ class BaseODSClassifier:
 
         # Verifica cada padrão
         for p in self.padroes:
-            # Lookahead para validar a presença
+            # Lookahead para validar a presença do padrão
             if re.search(p, texto, re.IGNORECASE | re.MULTILINE):
-                # Captura do contexto completo da frase com até 50 palavras em torno
-                captura = re.search(r'\b(?:\w+\s*){0,50}?(?:' + p + r')(?:\s*\w+){0,50}\b', texto, re.IGNORECASE)
+                # Captura do contexto completo com até 3 palavras antes e depois do padrão
+                captura = re.search(r'((?:\w+\s*){0,1}' + p + r'(?:\s*\w+){0,1})', texto, re.IGNORECASE)
+                
                 if captura:
-                    return True, captura.group(0)  # Retorna o contexto completo
+                    return True, captura.group(1)  # Retorna o contexto capturado
 
         return False, None
