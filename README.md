@@ -1,103 +1,129 @@
+Ótimo! Vou reformular o README.md incorporando suas sugestões e adicionando os links fornecidos. Aqui está a versão aprimorada:
+
+---
+
 # TedeODS - PUC-SP
 
-### Indicadores e rankings internacionais: mapeamento de práticas e reflexões sobre o papel da Universidade nos debates sobre sustentabilidade
+## Mapeamento de Trabalhos Acadêmicos segundo os Objetivos de Desenvolvimento Sustentável (ODS)
 
-## Sobre o Projeto
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-Universidades como a PUC-SP enfrentam dificuldades para identificar, em seus repositórios de teses e dissertações, os trabalhos que endereçam os Objetivos de Desenvolvimento Sustentável (ODS). O projeto **TedeODS** foi desenvolvido para mitigar esse problema, utilizando técnicas de extração, classificação e disponibilização dos trabalhos acadêmicos de forma acessível.
+### Sobre o Projeto
 
-## Funcionalidades
+O projeto **TedeODS**, desenvolvido pela PUC-SP, tem como objetivo mapear a produção científica acadêmica de teses e dissertações segundo os **[Objetivos de Desenvolvimento Sustentável (ODS)](https://brasil.un.org/pt-br/sdgs)** da Organização das Nações Unidas (ONU).
 
-1. **Extração de Trabalhos Acadêmicos:**
-   - Desenvolvimento de um **scraper e parser** para extrair os trabalhos do repositório TEDE da PUC-SP.
+A proposta surge diante da dificuldade enfrentada por instituições de ensino superior para identificar, de maneira automatizada e transparente, a aderência de sua produção acadêmica às pautas de sustentabilidade global. O TedeODS propõe uma solução baseada em software de código aberto, modular e escalável, que adota metodologias do **[THE Impact Rankings](https://www.timeshighereducation.com/impactrankings)** para classificação de documentos acadêmicos.
 
-2. **Identificação de Trabalhos Relacionados aos ODS:**
-   - Utilização de **expressões de busca** baseadas em indexadores acadêmicos como a SciELO.
-   - Desenvolvimento de **classificadores** específicos para cada ODS, que associam os abstracts dos trabalhos aos ODS pertinentes.
+Dados extraídos do repositório institucional **[TEDE PUC-SP](https://tede2.pucsp.br/)**.
 
-3. **Disponibilização via API:**
-   - Armazenamento estruturado dos trabalhos em um banco de dados.
-   - Construção de uma **API RESTful** que permite consulta por:
-     - Data
-     - Termos específicos
-     - Número da ODS associada
+---
 
-4. **Interface Web para Consulta:**
-   - Desenvolvimento de um **frontend acessível** para que pesquisadores e público geral possam explorar os trabalhos acadêmicos relacionados às ODS.
+### Funcionalidades Principais
 
-## Estrutura do Repositório
+1. **Extração Automatizada de Trabalhos Acadêmicos**  
+   - Ferramentas de *web scraping* e *parsing* para coleta de metadados do TEDE.
+
+2. **Classificação segundo os ODS**  
+   - Expressões de busca derivadas do THE Impact Rankings, traduzidas e adaptadas ao português.  
+   - Classificadores especializados por ODS aplicados aos resumos dos trabalhos.
+
+3. **API RESTful para Consulta Pública**  
+   - Buscas por:  
+     - ✅ Ano de publicação  
+     - ✅ Termos específicos  
+     - ✅ Número/descrição dos ODS  
+   - Exemplo de consulta:  
+     ```bash
+     # Listar trabalhos do ODS 7 (Energia Limpa) publicados em 2022:
+     curl "http://localhost:5000/TeseODS?ods=7&ano=2022"
+     ```
+   - Resposta (JSON):  
+     ```json
+     {
+       "resultados": [
+         {
+           "titulo": "Energias renováveis no Brasil...",
+           "autor": "Fulano et al.",
+           "ods": 7,
+           "link": "https://tede2.pucsp.br/12345"
+         }
+       ]
+     }
+     ```
+
+4. **Interface Web Interativa** *(Em desenvolvimento)*  
+   - Dashboard para visualização por:  
+     - 📊 Distribuição temporal  
+     - 🌍 Mapa de ODS  
+     - 🔍 Busca semântica  
+
+---
+
+### Estrutura do Repositório
 
 ```bash
 TedeODS/
-├── README.md                # Documentação do projeto
-├── api/                     # Código da API para consulta dos trabalhos
-├── classifiers/             # Classificadores para cada ODS
-├── data/                    # Base de dados armazenando os trabalhos
-├── expressões_de_busca/     # Expressões usadas para identificar trabalhos ligados às ODS
-├── tests/                   # Testes automatizados para os classificadores
-├── utils/                   # Utilitários auxiliares para o processamento de dados
-├── main.py                  # Arquivo principal do projeto
-├── mesclador.ipynb          # Notebook para mesclar e processar os dados
-├── requirements.txt         # Dependências do projeto
-└── PIPEQ_API_ODS.ipynb      # Notebook para execução da API
+├── api/                     # API Flask (REST)
+│   ├── api.py               # Endpoints principais
+│   └── database.py          # Conexão com o banco
+├── classifiers/             # Modelos de classificação por ODS
+├── data/                    # Datasets processados
+├── frontend/                # Interface web (React)
+├── notebooks/               # Análises exploratórias
+│   ├── mesclador.ipynb      
+│   └── PIPEQ_API_ODS.ipynb  
+└── requirements.txt         # Dependências Python
 ```
 
-## Como Executar
+---
+
+## Como Usar
 
 ### Pré-requisitos
-- Python 3.x
-- Node.js (para o frontend, se aplicável)
-- Banco de Dados (SQLite/PostgreSQL)
-- Ambiente virtual Python
+- Python 3.10+  
+- Node.js 16+ (apenas para frontend)  
+- Banco de dados PostgreSQL ou SQLite  
 
-### Passos
-1. **Clone o repositório:**
-   ```sh
-   git clone https://github.com/seu_usuario/TedeODS.git
-   cd TedeODS
-   ```
+### Instalação
+```bash
+# 1. Clone o repositório
+git clone https://github.com/j3ffsilva/TedeODS.git
+cd TedeODS
 
-2. **Crie e ative um ambiente virtual:**
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # No Windows use 'venv\Scripts\activate'
-   ```
+# 2. Configure o ambiente
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. **Instale as dependências:**
-   ```sh
-   pip install -r requirements.txt
-   ```
+# 3. Instale dependências
+pip install -r requirements.txt
 
-4. **Execute a API:**
-   ```sh
-   cd api
-   python api.py
-   ```
+# 4. Configure o banco de dados
+cp .env.example .env  # Preencha com suas credenciais
+python api/database.py --setup  # Cria tabelas
 
-5. **Execute os testes:**
-   ```sh
-   pytest tests/
-   ```
-
-A API será acessível em `http://zumbi:5000/TeseODS`.
-
-## Equipe do Projeto
-
-Este projeto foi desenvolvido pelos seguintes pesquisadores:
-
-- **Dr. Jefferson de Oliveira Silva** | Email: [silvajo@pucsp.br](mailto:silvajo@pucsp.br)
-- **Dra. Mariana Ribeiro Jansen Ferreira** | Email: [mrferreira@pucsp.br](mailto:mrferreira@pucsp.br)
-- **Dra. Natalia Maria Felix de Souza** | Email: [nmfsouza@pucsp.br](mailto:nmfsouza@pucsp.br)
-- **Dra. Terra Friedrich Budini** | Email: [tfbudini@pucsp.br](mailto:tfbudini@pucsp.br)
-
-
-## Como Citar o Projeto
-Se você utilizar o TedeODS em sua pesquisa, por favor cite da seguinte forma:
-
-> SILVA, J. O; FERREIRA, M. R. J.; SOUZA, N. M. F.; BUDINI, T. F. **TedeODS: Indicadores e rankings internacionais: mapeamento de práticas e reflexões sobre o papel da PUC-SP nos debates sobre sustentabilidade**. Disponível em: <https://github.com/j3ffsilva/TedeODS>. Acesso em: [data de acesso].
-
-## Licença
-Este projeto está disponível sob a licença **MIT**. Sinta-se à vontade para contribuir e utilizar!
+# 5. Inicie a API
+python api/api.py  # Disponível em http://localhost:5000
+```
 
 ---
-*Desenvolvido para facilitar o acesso ao conhecimento acadêmico e promover os Objetivos de Desenvolvimento Sustentável.*
+
+## Como Contribuir
+1. Abra uma **issue** para discutir mudanças.  
+2. Faça um *fork* e envie **pull requests** para a branch `dev`.  
+3. Siga os padrões de código (disponíveis em [CONTRIBUTING.md](CONTRIBUTING.md)).  
+
+---
+
+## Equipe
+| Nome | Afiliação | Contato |
+|------|-----------|---------|
+| Dr. Jefferson Silva | PUC-SP/TIDD | [silvajo@pucsp.br](mailto:silvajo@pucsp.br) |
+| Dra. Mariana Ferreira | PUC-SP | [mrferreira@pucsp.br](mailto:mrferreira@pucsp.br) |
+| Dra. Natalia Maria Felix de Souza | PUC-SP | [nmfsouza@pucsp.br](mailto:nmfsouza@pucsp.br) |
+| Dra. Terra Friedrich Budini | PUC-SP | [tfbudini@pucsp.br](mailto:tfbudini@pucsp.br) |
+
+
+---
+
+## Licença
+Distribuído sob a licença **MIT**. Consulte [LICENSE](LICENSE) para detalhes.
