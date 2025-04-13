@@ -1,7 +1,3 @@
-Ótimo! Vou reformular o README.md incorporando suas sugestões e adicionando os links fornecidos. Aqui está a versão aprimorada:
-
----
-
 # TedeODS - PUC-SP
 
 ## Mapeamento de Trabalhos Acadêmicos segundo os Objetivos de Desenvolvimento Sustentável (ODS)
