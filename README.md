@@ -118,6 +118,13 @@ python api/api.py  # Disponível em http://localhost:5000
 | Dra. Natalia Maria Felix de Souza | PUC-SP | [nmfsouza@pucsp.br](mailto:nmfsouza@pucsp.br) |
 | Dra. Terra Friedrich Budini | PUC-SP | [tfbudini@pucsp.br](mailto:tfbudini@pucsp.br) |
 
+---
+
+## Como Citar o Projeto
+
+Se você utilizar o TedeODS em sua pesquisa, por favor cite-o da seguinte forma:
+
+> SILVA, J. O; FERREIRA, M. R. J.; SOUZA, N. M. F.; BUDINI, T. F. **TedeODS: Indicadores e rankings internacionais: mapeamento de práticas e reflexões sobre o papel da PUC-SP nos debates sobre sustentabilidade**. Disponível em: <https://github.com/j3ffsilva/TedeODS>. Acesso em: [data de acesso].
 
 ---
 
