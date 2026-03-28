@@ -1,0 +1,57 @@
+TITLE-ABS-KEY (
+    (
+        {racismo}
+        OU {racismo\s+estrutural}
+        OU {discrimina[cç][aã]o\s+racial}
+        OU {preconceito\s+racial}
+        OU {desigualdade[s]?\s+raciais?}
+        OU {injusti[cç]a[s]?\s+racial[is]?}
+        OU {segrega[cç][aã]o\s+racial}
+        OU {exclus[aã]o\s+racial}
+        OU {intoleran[cç]ia\s+racial}
+        OU {viol[eê]ncia\s+racial}
+        OU {colorismo}
+        OU {branqueamento\s+racial}
+        OU {popula[cç][aã]o\s+negra}
+        OU {popula[cç][aã]o\s+afrodescendente}
+        OU {comunidade\s+negra}
+        OU {jovens?\s+negros?}
+        OU {mulheres?\s+negras?}
+        OU {homens?\s+negros?}
+        OU {crian[cç]as?\s+negras?}
+        OU {estudantes?\s+negros?}
+        OU {trabalhadores?\s+negros?}
+        OU {mulheres?\s+pretas?}
+        OU {homens?\s+pretos?}
+        OU {afrodescendentes?}
+        OU {afro[\s\-]brasileir[oa]s?}
+        OU {quilombolas?}
+        OU {territ[oó]rio\s+quilombola}
+        OU {comunidade\s+quilombola}
+        OU {cotas?\s+raciais?}
+        OU {a[cç][oõ]es?\s+afirmativas?}
+        OU {lei\s+de\s+cotas}
+        OU {inculs[aã]o\s+racial\b|\binculs[aã]o\s+racial}
+        OU {equidade\s+racial}
+        OU {antirracismo}
+        OU {antirracistas?}
+        OU {movimento\s+negro}
+        OU {conscien[cç]ia\s+negra}
+        OU {luta\s+antirracista}
+        OU {rela[cç][oõ]es\s+raciais}
+        OU {[eé]tnico[\s\-]racial}
+        OU {diversidade\s+racial}
+        OU {diversidade\s+[eé]tnica}
+        OU {identidade\s+racial}
+        OU {identidade\s+negra}
+        OU {negritude}
+        OU {interseccionalidade}
+        OU {di[aá]spora\s+africana}
+        OU {di[aá]spora\s+negra}
+        OU {cultura\s+negra}
+        OU {resist[eê]ncia\s+negra}
+        OU {vozes\s+negras}
+        OU {escraviza[cç][aã]o}
+        OU {p[oó]s[\s\-]aboli[cç][aã]o}
+    )
+)

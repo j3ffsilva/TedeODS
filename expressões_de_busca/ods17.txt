@@ -1,0 +1,39 @@
+TITLE-ABS-KEY (
+    (
+        {coopera[cç][aã]o\s+internacional}
+        OU {coopera[cç][aã]o\s+para\s+o\s+desenvolvimento}
+        OU {coopera[cç][aã]o\s+norte[\s\-]sul}
+        OU {coopera[cç][aã]o\s+sul[\s\-]sul}
+        OU {coopera[cç][aã]o\s+triangular}
+        OU {ajuda\s+ao\s+desenvolvimento}
+        OU {ajuda\s+externa}
+        OU {ajuda\s+oficial\s+ao\s+desenvolvimento}
+        OU {assist[eê]ncia\s+oficial\s+ao\s+desenvolvimento}
+        OU {financiamento\s+do\s+desenvolvimento}
+        OU {fluxos\s+financeiros\s+internacionais}
+        OU {sistema\s+financeiro\s+internacional}
+        OU {investimento\s+estrangeiro\s+direto}
+        OU {d[ií]vida\s+externa}
+        OU {al[ií]vio\s+da\s+d[ií]vida}
+        OU {reestrutura[cç][aã]o\s+da\s+d[ií]vida}
+        OU {transfer[eê]ncia\s+de\s+tecnologia}
+        OU {transfer[eê]ncia\s+tecnol[oó]gica}
+        OU {parcerias?\s+para\s+o\s+desenvolvimento}
+        OU {govern[aâ]n[cç]a\s+global}
+        OU {multilateralismo}
+        OU {acordos?\s+multilaterais?}
+        OU {sistema\s+multilateral\s+de\s+com[eé]rcio}
+        OU {com[eé]rcio\s+internacional}
+        OU {facilita[cç][aã]o\s+do\s+com[eé]rcio}
+        OU {agenda\s+2030}
+        OU {implementa[cç][aã]o\s+dos\s+ods}
+        OU {meios\s+de\s+implementa[cç][aã]o}
+        OU {coer[eê]ncia\s+de\s+pol[ií]ticas}
+        OU {monitoramento\s+dos\s+ods}
+        OU {indicadores\s+dos\s+ods}
+        OU {fundo\s+monet[aá]rio\s+internacional}
+        OU {organiza[cç][aã]o\s+mundial\s+do\s+com[eé]rcio}
+        OU {revis[aã]o\s+volunt[aá]ria\s+nacional}
+        OU {revis[aã]o\s+local\s+volunt[aá]ria}
+    )
+)
