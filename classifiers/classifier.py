@@ -6,8 +6,8 @@ import pandas as pd
 def verifica_texto_ods(textos):
     resultados = []
     
-    # Lista de arquivos que representam as ODS (ODS 1 a ODS 16)
-    ods_scripts = [f'parser_ods{str(i).zfill(2)}' for i in range(1, 17)]
+    # Lista de arquivos que representam as ODS (ODS 1 a ODS 18)
+    ods_scripts = [f'parser_ods{str(i).zfill(2)}' for i in range(1, 19)]
     
     for texto in textos:
         resultado_texto = {"texto": texto, "ods": {}}

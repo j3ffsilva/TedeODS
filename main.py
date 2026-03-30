@@ -41,7 +41,7 @@ def classify_texts(texto):
     #resultados = {"ods": {}, "ods_numeros": [], "matches": []}
     resultados = {"ods": []}
 
-    for ods_number in range(1, 17):
+    for ods_number in range(1, 19):
         ods, termo = classify_text(texto, ods_number)
         if ods:
             #ods_key = f"ods{str(ods).zfill(2)}"
